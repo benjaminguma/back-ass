@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PostModule } from './features/Post/post.module';
+import { post } from './features/Post/models/singlePost.entity';
 import { CategoryModule } from './features/postCategory/category.module';
 import { user } from './features/auth/model/users.entity';
 import { PostCategory } from './features/postCategory/models/postCategory.entity';
@@ -20,7 +21,7 @@ const Modules = [AuthModule, PostModule, CategoryModule];
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [PostCategory],
+      entities: [post, user, PostCategory],
       synchronize: true,
       retryAttempts: 1,
     }),

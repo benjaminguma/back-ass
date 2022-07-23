@@ -20,7 +20,4 @@ export class AuthController {
   async signup(@Body() signupDetails) {
     return 'singup route';
   }
-
-  @Post(AuthRouteNames.LOGOUT)
-  logout() {}
 }
