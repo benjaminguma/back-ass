@@ -1,9 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from './features/auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
+import AuthModule from './features/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { PostModule } from './features/Post/post.module';
+import { CategoryModule } from './features/postCategory/category.module';
+import { user } from './features/auth/model/users.entity';
+import { PostCategory } from './features/postCategory/models/postCategory.entity';
 
-const Modules = [AuthModule];
+const Modules = [AuthModule, PostModule, CategoryModule];
 
 @Module({
   imports: [
@@ -15,7 +20,7 @@ const Modules = [AuthModule];
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [],
+      entities: [PostCategory],
       synchronize: true,
       retryAttempts: 1,
     }),
@@ -23,5 +28,5 @@ const Modules = [AuthModule];
   ],
 })
 export class AppModule {
-  constructor() {}
+  constructor(private dataSource: DataSource) {}
 }
