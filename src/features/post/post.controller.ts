@@ -10,25 +10,36 @@ import {
   Post,
   Put,
   Req,
+  Res,
+  UseGuards,
 } from '@nestjs/common';
 import { Request } from 'express';
 
 import { PostService } from './post.service';
 import { singlePost } from './post.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { user } from '../auth/model/users.entity';
 
 const base = 'post';
 
+interface userInReq extends Request {
+  user;
+}
+
 @Controller()
+@UseGuards(AuthGuard('jwt'))
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
   @Post(`${base}`)
-  async createPost(@Body() newPostData, @Req() req: Request) {
+  async createPost(@Body() newPostData, @Req() req: userInReq) {
     try {
+      const userData = req.user as user;
+
       const result = await this.postService.createPost({
         ...newPostData,
         category: 1,
-        owner: 1,
+        owner: userData.u_id,
       });
       return result;
     } catch (error) {
@@ -73,10 +84,21 @@ export class PostController {
   }
 
   @Get(`user/${base}`)
-  async getUserPosts(@Req() req: Request) {}
+  async getUserPosts(@Req() req: userInReq) {
+    try {
+      const user = req.user as user;
+      const posts = this.postService.getUserPosts(user.u_id);
+      return posts;
+    } catch (error) {
+      return new NotFoundException({
+        message: 'oopsie! no posts for this user',
+        success: false,
+      });
+    }
+  }
 
   @Get(`${base}/:postId`)
-  async getPost(@Param('postId') id: number, @Req() req: Request) {
+  async getPost(@Param('postId') id: number, @Req() req: userInReq) {
     return await this.postService.getPost(id);
   }
 }

@@ -1,9 +1,11 @@
 import {
   BadGatewayException,
+  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
+  InternalServerErrorException,
   Post,
   Put,
   UseGuards,

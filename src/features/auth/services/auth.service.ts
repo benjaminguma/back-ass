@@ -27,4 +27,6 @@ export default class AuthService {
     });
     return await this.userMg.save(newUser);
   }
+
+  logout() {}
 }

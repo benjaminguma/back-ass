@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { user } from '../model/users.entity';
 
 Injectable();
-export default class UserService {
+export class UserService {
   constructor(
     @InjectRepository(user) private readonly userMg: Repository<user>,
   ) {}
