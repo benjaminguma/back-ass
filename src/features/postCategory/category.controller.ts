@@ -1,17 +1,15 @@
 import {
   BadGatewayException,
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
-  InternalServerErrorException,
   Post,
   Put,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { baseServerError } from 'src/utils/baseError';
+import { baseServerError } from '../../utils/baseError';
 import { CategoryService } from './category.service';
 import { category } from './dto/category.dto';
 import { postCategory } from './interfaces';

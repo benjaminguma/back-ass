@@ -51,7 +51,7 @@ INSERT INTO `post` (`p_id`,`title`,`content`,`category`,`owner`) VALUES (5,'Edd 
 INSERT INTO `post` (`p_id`,`title`,`content`,`category`,`owner`) VALUES (6,'come with me','when love rhythms start to play',2,1);
 INSERT INTO `post` (`p_id`,`title`,`content`,`category`,`owner`) VALUES (7,'Romeo and juli','I love the way I are',2,5);
 INSERT INTO `post` (`p_id`,`title`,`content`,`category`,`owner`) VALUES (8,'this post is about wisdom','how can one be soo dangerous',1,1);
-INSERT INTO `post` (`p_id`,`title`,`content`,`category`,`owner`) VALUES (9,'post about a Hitler','the stronger must dominate and not mate with the weak which would signify the sacrifise of his own higher nature',1,5);
+INSERT INTO `post` (`p_id`,`title`,`content`,`category`,`owner`) VALUES (9,'Hitler','the stronger must dominate and not mate with the weak which would signify the sacrifice of his own higher nature',1,5);
 
 
 

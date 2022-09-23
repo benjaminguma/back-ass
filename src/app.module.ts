@@ -8,6 +8,7 @@ import { post } from './features/Post/models/singlePost.entity';
 import { CategoryModule } from './features/postCategory/category.module';
 import { user } from './features/auth/model/users.entity';
 import { PostCategory } from './features/postCategory/models/postCategory.entity';
+import { PaymentsModule } from './payments/payments.module';
 
 const Modules = [AuthModule, PostModule, CategoryModule];
 
@@ -26,6 +27,7 @@ const Modules = [AuthModule, PostModule, CategoryModule];
       retryAttempts: 1,
     }),
     ...Modules,
+    PaymentsModule,
   ],
 })
 export class AppModule {
